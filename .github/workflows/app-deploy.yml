@@ -1,0 +1,42 @@
+name: App Deploy
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  deploy-test:
+    name: Deploy to Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to AKS Test
+      uses: azure/k8s-deploy@v1.3
+      with:
+        manifests: |
+          ./remix-weather-app/k8s/deployment.yaml
+          ./remix-weather-app/k8s/service.yaml
+        images: |
+          ${{ steps.terraform.outputs.acr_name }}.azurecr.io/weather-app:${{ github.sha }}
+        
+  deploy-prod:
+    name: Deploy to Production
+    needs: deploy-test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy to AKS Prod
+      uses: azure/k8s-deploy@v1.3
+      with:
+        manifests: |
+          ./remix-weather-app/k8s/deployment.yaml
+          ./remix-weather-app/k8s/service.yaml
+        images: |
+          ${{ steps.terraform.outputs.acr_name }}.azurecr.io/weather-app:${{ github.sha }}
