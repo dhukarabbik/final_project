@@ -8,6 +8,7 @@ This capstone project applies various Infrastructure as Code (IaC) principles to
 
 The project repository follows a structured layout:
 
+```
 .
 ├── remix-weather-app
 │   ├── src
@@ -38,6 +39,7 @@ The project repository follows a structured layout:
 │       ├── docker-build-push.yml
 │       └── app-deploy.yml
 └── terraform.tf
+```
 
 
 
@@ -71,11 +73,9 @@ GitHub Actions workflows automate various tasks:
 
 ## Team Members
 
-- [Name 1](GitHub Profile Link)
-- [Name 2](GitHub Profile Link)
-- [Name 3](GitHub Profile Link)
+- Rabbikali Dhuka
+
 
 ## Special Instructions
 
-[Add any special instructions or notes here.]
 
