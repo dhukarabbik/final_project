@@ -3,6 +3,10 @@ resource "azurerm_resource_group" "aks" {
   location = "West Europe"
 }
 
+module "network" {
+  source = "../network"
+}
+
 resource "azurerm_kubernetes_cluster" "test" {
   name                = "aks-weather-app-test"
   location            = azurerm_resource_group.aks.location
@@ -13,6 +17,7 @@ resource "azurerm_kubernetes_cluster" "test" {
     name       = "default"
     node_count = 1
     vm_size    = "Standard_B2s"
+    vnet_subnet_id = module.network.test_subnet_id
   }
 
   identity {
@@ -32,6 +37,7 @@ resource "azurerm_kubernetes_cluster" "prod" {
     name       = "default"
     node_count = 3
     vm_size    = "Standard_B2s"
+     vnet_subnet_id = module.network.prod_subnet_id
   }
 
   identity {

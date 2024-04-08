@@ -17,3 +17,11 @@ output "subnet_names" {
     azurerm_subnet.admin.name
   ]
 }
+
+output "test_subnet_id" {
+  value = azurerm_subnet.test.id
+}
+
+output "prod_subnet_id" {
+  value = azurerm_subnet.prod.id
+}

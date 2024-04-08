@@ -20,19 +20,19 @@ provider "kubernetes" {
 }
 
 module "backend" {
-  source = "./backend"
+  source = "./infrastructure/backend"
 }
 
 module "network" {
-  source = "./network"
+  source = "./infrastructure/network"
 }
 
 module "aks" {
-  source = "./aks"
+  source = "./infrastructure/aks"
 }
 
 module "app" {
-  source = "./app"
+  source = "./infrastructure/app"
 
   environment   = "test"
   location      = "West Europe"
@@ -42,7 +42,7 @@ module "app" {
 }
 
 module "app_dev" {
-  source = "./app"
+  source = "./infrastructure/app"
 
   environment   = "dev"
   location      = "West Europe"
@@ -52,7 +52,7 @@ module "app_dev" {
 }
 
 module "app_prod" {
-  source = "./app"
+  source = "./infrastructure/app"
 
   environment   = "prod"
   location      = "West Europe"

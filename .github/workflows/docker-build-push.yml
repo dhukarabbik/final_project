@@ -24,3 +24,5 @@ jobs:
       run: |
         docker build -t ${{ steps.terraform.outputs.acr_name }}.azurecr.io/weather-app:${{ github.sha }} ./remix-weather-app
         docker push ${{ steps.terraform.outputs.acr_name }}.azurecr.io/weather-app:${{ github.sha }}
+
+
